@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { company, navigation } from "@/lib/data";
 import { Twitter, Linkedin, Github, Dribbble } from "lucide-react";
 
@@ -13,9 +14,13 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary-foreground flex items-center justify-center">
-                <span className="text-primary font-bold text-sm">N</span>
-              </div>
+              <Image
+                src="/logo.png"
+                alt={`${company.name} Logo`}
+                width={32}
+                height={32}
+                className="h-8 w-auto"
+              />
               <span className="font-bold text-lg tracking-tight">
                 {company.name}
               </span>
