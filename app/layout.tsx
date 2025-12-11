@@ -1,0 +1,123 @@
+import type React from "react";
+import type { Metadata, Viewport } from "next";
+import { Inter, Playfair_Display, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
+
+/**
+ * Font Configuration
+ * - Inter: Clean, modern sans-serif for body text and UI
+ * - Playfair Display: Elegant serif for headings and emphasis
+ * - Geist Mono: Monospace for code snippets
+ */
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
+
+/**
+ * SEO Metadata Configuration
+ * Update these values to match your brand
+ */
+export const metadata: Metadata = {
+  metadataBase: new URL("https://queztlabs.tech"),
+  title: {
+    default: "Quezt Labs | Premium Digital Products & Mobile Apps",
+    template: "%s | Quezt Labs",
+  },
+  description:
+    "We craft exceptional mobile apps, web products, and digital experiences. A technology studio focused on turning ambitious ideas into reality.",
+  keywords: [
+    "mobile app development",
+    "web development",
+    "digital products",
+    "technology studio",
+    "UI/UX design",
+    "software development",
+  ],
+  authors: [{ name: "Quezt Labs" }],
+  creator: "Quezt Labs",
+  publisher: "Quezt Labs",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://queztlabs.tech",
+    siteName: "Quezt Labs",
+    title: "Quezt Labs | Premium Digital Products & Mobile Apps",
+    description:
+      "We craft exceptional mobile apps, web products, and digital experiences.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Quezt Labs - Premium Digital Products",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Quezt Labs | Premium Digital Products & Mobile Apps",
+    description:
+      "We craft exceptional mobile apps, web products, and digital experiences.",
+    images: ["/og-image.png"],
+    creator: "@queztlabs",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
+      { url: "/icon-dark-32x32.png", media: "(prefers-color-scheme: dark)" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon.png",
+  },
+  generator: "quezt-labs",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#1a1a1a" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${inter.variable} ${playfair.variable} ${geistMono.variable}`}
+    >
+      <body className="font-sans antialiased">
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  );
+}
